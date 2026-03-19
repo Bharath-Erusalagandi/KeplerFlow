@@ -1,59 +1,72 @@
-Features
+# 🔭 KeplerFlow: AI-Powered Exoplanet Discovery 🪐
 
-    Advanced Ensemble Model: Combines Random Forest, XGBoost, LightGBM, Gradient Boosting, and ExtraTrees classifiers
-    Achieves 81.96% test accuracy with 89.92% ROC-AUC score
-    NASA Data Integration: Trained on 21,000+ samples from Kepler, K2, and TESS missions
-    Input stellar and planetary parameters for instant predictions
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![NASA Space Apps](https://img.shields.io/badge/NASA%20Space%20Apps-2025-blue)](https://www.spaceappschallenge.org/)
 
-Model Performance
-Test Set Results
+An AI-p**KeplerFlow** is a research-grade machine learning system designed to discover and classify exoplanets using data from NASA's Kepler, K2, and TESS missions. By implementing advanced ensemble methodologies, it achieves high precision in distinguishing between confirmed exoplanets and false positives.
+ with high accuracy.
 
-    Accuracy: 81.96%
-    Precision: 79.23%
-    Recall: 85.59%
-    F1 Score: 82.29%
-    ROC-AUC: 89.92%
+## 🚀 Features
 
-Machine Learning Stack
+- **Advanced Ensemble Model**: Combines Random Forest, XGBoost, LightGBM, Gradient Boosting, and ExtraTrees classifiers.
+- **Superior Performance**: Achieves ~82% accuracy with high ROC-AUC scores through research-grade feature engineering.
+- **NASA Data Integration**: Trained on 21,000+ samples across multiple NASA missions.
+- **Interactive Web Interface**: Built with Dash for real-time classification and interactive data exploration.
+- **Physics-Informed Features**: Incorporates 35+ engineered features including SNR estimates, habitable zone indicators, and planetary density proxies.
 
-    scikit-learn: Core ML algorithms and preprocessing
-    XGBoost: Extreme gradient boosting
-    LightGBM: Microsoft's gradient boosting framework
-    imblearn: SMOTE for class balancing
+## 🛠️ Tech Stack
 
-Web Application Stack
+- **Machine Learning**: `scikit-learn`, `XGBoost`, `LightGBM`, `imbalanced-learn`
+- **Frontend**: `Dash`, `Plotly`, `Bootstrap`
+- **Data Processing**: `Pandas`, `NumPy`, `Joblib`
 
-    Flask: Python web framework
-    HTML5/CSS3: Frontend markup and styling
-    JavaScript: Client-side interactivity
-    Font Awesome: Icon framework
+## 📋 Prerequisites
 
-Data Processing
+- Python 3.8 or higher
+- `pip` package manager
 
-    Feature Engineering: 12 core parameters for classification
-    Data Harmonization: Standardized column names across missions
-    Missing Value Handling: Median imputation for robust predictions
-    Feature Scaling: StandardScaler for optimal model performance
+## ⚙️ Installation
 
-Dataset Information
-Data Sources
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Bharath-Erusalagandi/Nasa-Space-Apps.git
+   cd Nasa-Space-Apps
+   ```
 
-    Kepler Mission: Primary exoplanet discovery data
-    K2 Mission: Extended Kepler mission data
-    TESS Mission: Transiting Exoplanet Survey Satellite data
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Features Used
+## 🏃 Usage
 
-    Orbital Period (pl_orbper): Planet's orbital period in days
-    Transit Duration (pl_trandur): Transit duration in hours
-    Transit Depth (pl_trandep): Transit depth in parts per million
-    Planet Radius (pl_rade): Planet radius in Earth radii
-    Planet Temperature (pl_eqt): Equilibrium temperature in Kelvin
-    Insolation Flux (pl_insol): Stellar flux relative to Earth
-    Impact Parameter (pl_imppar): Transit impact parameter
-    Star Temperature (st_teff): Stellar effective temperature
-    Star Radius (st_rad): Stellar radius in solar radii
-    Star Surface Gravity (st_logg): Stellar surface gravity
-    Right Ascension (ra): Celestial longitude
-    Declination (dec): Celestial latitude
+### 🌐 Launch the Web Application
+To start the interactive detection interface:
+```bash
+python scripts/launch_keplerflow.py
+```
+Visit `http://localhost:8050` in your browser to access the application.
 
+### 🧪 Train the Enhanced Model
+If you need to retrain the models with fresh data:
+```bash
+python scripts/keplerflow_pipeline.py
+```
+
+## 📊 Dataset Information
+
+The system utilizes harmonized data from:
+- **Kepler Mission**: Primary repository for planetary transits.
+- **K2 Mission**: Extended mission data providing diverse stellar targets.
+- **TESS Mission**: Latest data from the Transiting Exoplanet Survey Satellite.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+*Created for the 2025 NASA Space Apps Challenge.*

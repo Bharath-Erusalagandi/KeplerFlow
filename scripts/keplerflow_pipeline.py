@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enhanced NASA Space Apps Challenge 2025 - Advanced Exoplanet Detection ML Pipeline
+Enhanced NASA Space Apps Challenge 2025 - KeplerFlow Advanced Exoplanet Detection
 Incorporating methodologies from top-performing research papers to achieve superior results
 """
 
@@ -45,7 +45,7 @@ class EnhancedExoplanetMLPipeline:
     for superior exoplanet detection performance
     """
     
-    def __init__(self, data_dir="./"):
+    def __init__(self, data_dir="data"):
         self.data_dir = data_dir
         self.datasets = {}
         self.processed_data = None
@@ -664,9 +664,10 @@ class EnhancedExoplanetMLPipeline:
         self.comprehensive_evaluation()
         
         # Save models
-        joblib.dump(self.best_model, 'enhanced_best_model.pkl')
-        joblib.dump(self.scaler, 'enhanced_scaler.pkl')
-        joblib.dump(self.label_encoder, 'enhanced_label_encoder.pkl')
+        os.makedirs('models', exist_ok=True)
+        joblib.dump(self.best_model, 'models/enhanced_best_model.pkl')
+        joblib.dump(self.scaler, 'models/enhanced_scaler.pkl')
+        joblib.dump(self.label_encoder, 'models/enhanced_label_encoder.pkl')
         
         print("\n" + "="*60)
         print("Enhanced Pipeline completed successfully!")
@@ -678,5 +679,5 @@ class EnhancedExoplanetMLPipeline:
 
 if __name__ == "__main__":
     # Initialize and run the enhanced pipeline
-    pipeline = EnhancedExoplanetMLPipeline("/Users/bharath/Desktop/Nasa space app 1st/")
+    pipeline = EnhancedExoplanetMLPipeline("data")
     pipeline.run_enhanced_pipeline()

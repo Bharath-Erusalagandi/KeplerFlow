@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-NASA Space Apps Challenge 2025 - Exoplanet Detection Web Interface
+NASA Space Apps Challenge 2025 - KeplerFlow
 Interactive web application for exoplanet classification and data exploration
 """
 
@@ -16,22 +16,29 @@ import joblib
 import json
 import base64
 import io
-from exoplanet_ml_pipeline import ExoplanetMLPipeline
+import os
+# from exoplanet_ml_pipeline import ExoplanetMLPipeline
 
 # Load trained models and preprocessing components
 try:
-    model = joblib.load('best_exoplanet_model.pkl')
-    scaler = joblib.load('feature_scaler.pkl')
-    label_encoder = joblib.load('label_encoder.pkl')
+    if os.path.exists('models/enhanced_best_model.pkl'):
+        model = joblib.load('models/enhanced_best_model.pkl')
+        scaler = joblib.load('models/enhanced_scaler.pkl')
+        label_encoder = joblib.load('models/enhanced_label_encoder.pkl')
+        print("Trained ENHANCED model loaded successfully!")
+    else:
+        model = joblib.load('models/best_exoplanet_model.pkl')
+        scaler = joblib.load('models/feature_scaler.pkl')
+        label_encoder = joblib.load('models/label_encoder.pkl')
+        print("Trained BASIC model loaded successfully!")
     MODEL_LOADED = True
-    print("Trained model loaded successfully!")
 except:
     print("No trained model found. Please run the ML pipeline first.")
     MODEL_LOADED = False
 
 # Initialize the Dash app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = "NASA Exoplanet Detection System"
+app.title = "KeplerFlow - AI Exoplanet Discovery"
 
 # Define feature names for input
 FEATURE_NAMES = [
@@ -73,7 +80,7 @@ app.layout = dbc.Container([
     # Header
     dbc.Row([
         dbc.Col([
-            html.H1("NASA Exoplanet Detection System", className="text-center mb-4"),
+            html.H1("KeplerFlow", className="text-center mb-4"),
             html.H4("AI-Powered Classification of Planetary Candidates", 
                    className="text-center text-muted mb-5"),
             html.Hr()
@@ -300,10 +307,10 @@ about_tab = dbc.Container([
     dbc.Row([
         dbc.Col([
             dbc.Card([
-                dbc.CardHeader(html.H5("About This System")),
+                dbc.CardHeader(html.H5("About KeplerFlow")),
                 dbc.CardBody([
                     html.P([
-                        "This AI-powered exoplanet detection system was developed for the ",
+                        "KeplerFlow is an AI-powered exoplanet detection system developed for the ",
                         html.Strong("2025 NASA Space Apps Challenge"), 
                         ". It uses machine learning to classify exoplanet candidates from NASA's ",
                         "Kepler, K2, and TESS missions."

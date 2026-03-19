@@ -12,9 +12,9 @@ import time
 def check_enhanced_files_exist():
     """Check if enhanced model files exist"""
     enhanced_files = [
-        'enhanced_best_model.pkl',
-        'enhanced_scaler.pkl', 
-        'enhanced_label_encoder.pkl'
+        'models/enhanced_best_model.pkl',
+        'models/enhanced_scaler.pkl', 
+        'models/enhanced_label_encoder.pkl'
     ]
     
     missing_files = [f for f in enhanced_files if not os.path.exists(f)]
@@ -23,9 +23,9 @@ def check_enhanced_files_exist():
 def check_basic_files_exist():
     """Check if basic model files exist"""
     basic_files = [
-        'best_exoplanet_model.pkl',
-        'feature_scaler.pkl', 
-        'label_encoder.pkl'
+        'models/best_exoplanet_model.pkl',
+        'models/feature_scaler.pkl', 
+        'models/label_encoder.pkl'
     ]
     
     missing_files = [f for f in basic_files if not os.path.exists(f)]
@@ -38,7 +38,7 @@ def run_enhanced_pipeline():
     print("📊 Implementing research-based improvements...")
     
     try:
-        result = subprocess.run([sys.executable, 'enhanced_exoplanet_ml.py'], 
+        result = subprocess.run([sys.executable, 'scripts/keplerflow_pipeline.py'], 
                                capture_output=True, text=True, timeout=1800)
         
         if result.returncode == 0:
@@ -60,7 +60,8 @@ def run_basic_pipeline():
     print("🔄 Running basic ML pipeline as fallback...")
     
     try:
-        result = subprocess.run([sys.executable, 'exoplanet_ml_pipeline.py'], 
+        # Note: Basic pipeline is replaced by keplerflow_pipeline
+        result = subprocess.run([sys.executable, 'scripts/keplerflow_pipeline.py', '--basic'], 
                                capture_output=True, text=True, timeout=600)
         
         if result.returncode == 0:
@@ -78,13 +79,13 @@ def run_basic_pipeline():
 
 def run_web_app():
     """Launch the web application"""
-    print("🌐 Starting enhanced web interface...")
+    print("🌐 Starting KeplerFlow web interface...")
     print("🔗 Visit http://localhost:8050 to access the application")
     print("🎯 Features: Real-time classification, advanced visualizations, performance metrics")
     print("⌨️  Press Ctrl+C to stop the server")
     
     try:
-        subprocess.run([sys.executable, 'exoplanet_web_app.py'])
+        subprocess.run([sys.executable, 'keplerflow_app.py'])
     except KeyboardInterrupt:
         print("\n👋 Shutting down the application")
     except Exception as e:
@@ -92,7 +93,7 @@ def run_web_app():
 
 def display_performance_summary():
     """Display performance summary"""
-    print("\n📊 ENHANCED SYSTEM PERFORMANCE SUMMARY")
+    print("\n📊 KeplerFlow PERFORMANCE SUMMARY")
     print("=" * 60)
     print("🏆 Ensemble Model Results:")
     print("   • Accuracy: 77.81% (vs 79.38% basic)")
@@ -110,13 +111,13 @@ def display_performance_summary():
 
 def main():
     print("🌟 NASA Space Apps Challenge 2025")
-    print("🔭 Enhanced Exoplanet Detection System")
+    print("🔭 KeplerFlow: AI-Powered Exoplanet Discovery")
     print("🏆 Research-Grade Performance & Methodology")
     print("=" * 60)
     
     # Check if we're in the right directory
-    if not os.path.exists('enhanced_exoplanet_ml.py'):
-        print("❌ Please run this script from the project directory")
+    if not os.path.exists('scripts/keplerflow_pipeline.py'):
+        print("❌ Please run this script from the project directory (root)")
         return
     
     # Check for enhanced models first
